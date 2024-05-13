@@ -1,0 +1,236 @@
+[
+  {
+    "Id": 1,
+    "IsSkipMoveValid": false,
+    "NumberOfTurnsWithListMaximum": 5,
+    "NumberOfTurnsMaximum": 8,
+    "Name": "Standard Phone Pad",
+    "PhoneButtons": [
+      [
+        {
+          "Column": 0,
+          "Row": 0,
+          "Label": "1",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [
+            0
+          ],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 1,
+          "Label": "4",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 2,
+          "Label": "7",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 3,
+          "Label": "*",
+          "IsAlwaysInvalid": true,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        }
+      ],
+      [
+        {
+          "Column": 1,
+          "Row": 0,
+          "Label": "2",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 1,
+          "Label": "5",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 2,
+          "Label": "8",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 3,
+          "Label": "0",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [
+            0
+          ],
+          "ValidNextMoves": null
+        }
+      ],
+      [
+        {
+          "Column": 2,
+          "Row": 0,
+          "Label": "3",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 1,
+          "Label": "6",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 2,
+          "Label": "9",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 3,
+          "Label": "#",
+          "IsAlwaysInvalid": true,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        }
+      ]
+    ],
+    "RowCount": 4,
+    "ColumnCount": 3
+  },
+  {
+    "Id": 2,
+    "IsSkipMoveValid": false,
+    "NumberOfTurnsWithListMaximum": 5,
+    "NumberOfTurnsMaximum": 8,
+    "Name": "NumberPad",
+    "PhoneButtons": [
+      [
+        {
+          "Column": 0,
+          "Row": 0,
+          "Label": "7",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 1,
+          "Label": "4",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 2,
+          "Label": "1",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [
+            0
+          ],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 0,
+          "Row": 3,
+          "Label": "0",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [
+            0
+          ],
+          "ValidNextMoves": null
+        }
+      ],
+      [
+        {
+          "Column": 1,
+          "Row": 0,
+          "Label": "8",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 1,
+          "Label": "5",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 2,
+          "Label": "2",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 1,
+          "Row": 3,
+          "Label": ".",
+          "IsAlwaysInvalid": true,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        }
+      ],
+      [
+        {
+          "Column": 2,
+          "Row": 0,
+          "Label": "9",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 1,
+          "Label": "6",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 2,
+          "Label": "3",
+          "IsAlwaysInvalid": false,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        },
+        {
+          "Column": 2,
+          "Row": 3,
+          "Label": "E",
+          "IsAlwaysInvalid": true,
+          "InvalidOnIteration": [],
+          "ValidNextMoves": null
+        }
+      ]
+    ],
+    "RowCount": 4,
+    "ColumnCount": 3
+  }
+]

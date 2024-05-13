@@ -1,0 +1,6 @@
+@ChessPhone.Api_HostAddress = http://localhost:5265
+
+GET {{ChessPhone.Api_HostAddress}}/ChessPhone/
+Accept: application/json
+
+###

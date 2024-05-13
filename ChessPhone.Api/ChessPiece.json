@@ -1,0 +1,209 @@
+[
+  {
+    "Name": "Bishop",
+    "Vectors": [
+      {
+        "Row": 1,
+        "Column": 1
+      },
+      {
+        "Row": -1,
+        "Column": -1
+      },
+      {
+        "Row": 1,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 1
+      }
+    ],
+    "Id": 1,
+    "IsCanOnlyMoveSingleSpace": false
+  },
+  {
+    "Name": "King",
+    "Vectors": [
+      {
+        "Row": 1,
+        "Column": 1
+      },
+      {
+        "Row": -1,
+        "Column": -1
+      },
+      {
+        "Row": 1,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 1
+      },
+      {
+        "Row": 0,
+        "Column": 1
+      },
+      {
+        "Row": 1,
+        "Column": 0
+      },
+      {
+        "Row": 0,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 0
+      }
+    ],
+    "Id": 2,
+    "IsCanOnlyMoveSingleSpace": true
+  },
+  {
+    "Name": "Knight",
+    "Vectors": [
+      {
+        "Row": -1,
+        "Column": -2
+      },
+      {
+        "Row": 1,
+        "Column": -2
+      },
+      {
+        "Row": -2,
+        "Column": -1
+      },
+      {
+        "Row": 2,
+        "Column": -1
+      },
+      {
+        "Row": -2,
+        "Column": 1
+      },
+      {
+        "Row": 2,
+        "Column": 1
+      },
+      {
+        "Row": -1,
+        "Column": 2
+      },
+      {
+        "Row": 1,
+        "Column": 2
+      }
+    ],
+    "Id": 3,
+    "IsCanOnlyMoveSingleSpace": true
+  },
+  {
+    "Name": "Queen",
+    "Vectors": [
+      {
+        "Row": 1,
+        "Column": 1
+      },
+      {
+        "Row": -1,
+        "Column": -1
+      },
+      {
+        "Row": 1,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 1
+      },
+      {
+        "Row": 0,
+        "Column": 1
+      },
+      {
+        "Row": 1,
+        "Column": 0
+      },
+      {
+        "Row": 0,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 0
+      }
+    ],
+    "Id": 4,
+    "IsCanOnlyMoveSingleSpace": false
+  },
+  {
+    "Name": "Rook",
+    "Vectors": [
+      {
+        "Row": 0,
+        "Column": 1
+      },
+      {
+        "Row": 1,
+        "Column": 0
+      },
+      {
+        "Row": 0,
+        "Column": -1
+      },
+      {
+        "Row": -1,
+        "Column": 0
+      }
+    ],
+    "Id": 5,
+    "IsCanOnlyMoveSingleSpace": false
+  },
+  {
+    "Name": "Pawn_Up",
+    "Vectors": [
+      {
+        "Row": -1,
+        "Column": 0
+      }
+    ],
+    "Id": 6,
+    "IsCanOnlyMoveSingleSpace": true
+  },
+  {
+    "Name": "Pawn_Down",
+    "Vectors": [
+      {
+        "Row": 1,
+        "Column": 0
+      }
+    ],
+    "Id": 7,
+    "IsCanOnlyMoveSingleSpace": true
+  },
+  {
+    "Name": "Pawn_Left",
+    "Vectors": [
+      {
+        "Row": 0,
+        "Column": 1
+      }
+    ],
+    "Id": 8,
+    "IsCanOnlyMoveSingleSpace": true
+  },
+  {
+    "Name": "Pawn_Right",
+    "Vectors": [
+      {
+        "Row": 0,
+        "Column": -1
+      }
+    ],
+    "Id": 9,
+    "IsCanOnlyMoveSingleSpace": true
+  }
+]
