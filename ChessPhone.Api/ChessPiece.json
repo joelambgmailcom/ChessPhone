@@ -163,7 +163,7 @@
     "IsCanOnlyMoveSingleSpace": false
   },
   {
-    "Name": "Pawn_Up",
+    "Name": "Pawn Up",
     "Vectors": [
       {
         "Row": -1,
@@ -174,7 +174,7 @@
     "IsCanOnlyMoveSingleSpace": true
   },
   {
-    "Name": "Pawn_Down",
+    "Name": "Pawn Down",
     "Vectors": [
       {
         "Row": 1,
@@ -185,7 +185,7 @@
     "IsCanOnlyMoveSingleSpace": true
   },
   {
-    "Name": "Pawn_Left",
+    "Name": "Pawn Right",
     "Vectors": [
       {
         "Row": 0,
@@ -196,7 +196,7 @@
     "IsCanOnlyMoveSingleSpace": true
   },
   {
-    "Name": "Pawn_Right",
+    "Name": "Pawn Left",
     "Vectors": [
       {
         "Row": 0,
