@@ -10,20 +10,21 @@ namespace ChessPhone.Api.Controllers
     [ApiController]
     public class ChessPiecesController(IChessPieceService chessPieceService) : ControllerBase
     {
-        private readonly IChessPieceService _chessPieceService = chessPieceService;
+        public int NumberOfTurnsMaximum { get; set; }
 
+        public int NumberOfTurnsWithListMaximum { get; set; }
         // GET: api/<ChessPiecesController>
         [HttpGet]
         public async Task<IEnumerable<ChessPiece>> Get()
         {
-            return await _chessPieceService.GetChessPiecesAsync();
+            return await chessPieceService.GetChessPiecesAsync();
         }
 
         // GET api/<ChessPiecesController>/5
         [HttpGet("{id}")]
-        public async Task<ChessPiece> Get(int id)
+        public async Task<ChessPiece?> Get(int id)
         {
-            return await _chessPieceService.GetChessPieceAsync(id);
+            return await chessPieceService.GetChessPieceAsync(id);
         }
     }
 }

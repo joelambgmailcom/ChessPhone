@@ -3,18 +3,16 @@ using ChessPhone.Infrastructure.Repositories;
 
 namespace ChessPhone.Application
 {
-    public class PhonePadService(IRepository<PhonePad> phonePadRepositoy) : IPhonePadService
+    public class PhonePadService(IRepository<PhonePad> phonePadRepository) : IPhonePadService
     {
-        private readonly IRepository<PhonePad> _PhonePadRepository = phonePadRepositoy;
-
         public async Task<List<PhonePad>> GetPhonePadsAsync()
         {
-            return await _PhonePadRepository.GetAllAsync();
+            return await phonePadRepository.GetAllAsync();
         }
 
-        public async Task<PhonePad> GetPhonePadAsync(int id)
+        public async Task<PhonePad?> GetPhonePadAsync(int id)
         {
-            return await _PhonePadRepository.GetAsync(id);
+            return await phonePadRepository.GetAsync(id);
         }
     }
 }

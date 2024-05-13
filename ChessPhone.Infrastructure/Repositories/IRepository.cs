@@ -4,6 +4,6 @@
     {
         Task<List<T>> GetAllAsync();
 
-        Task<T> GetAsync(int id);
+        Task<T?> GetAsync(int id);
     }
 }

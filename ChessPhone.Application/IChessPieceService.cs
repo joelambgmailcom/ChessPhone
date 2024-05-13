@@ -6,6 +6,6 @@ namespace ChessPhone.Application
     {
         Task<List<ChessPiece>> GetChessPiecesAsync();
 
-        Task<ChessPiece> GetChessPieceAsync(int Id);
+        Task<ChessPiece?> GetChessPieceAsync(int id);
     }
 }

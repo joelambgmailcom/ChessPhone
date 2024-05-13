@@ -6,6 +6,6 @@ namespace ChessPhone.Application
     {
         Task<List<PhonePad>> GetPhonePadsAsync();
 
-        Task<PhonePad> GetPhonePadAsync(int id);
+        Task<PhonePad?> GetPhonePadAsync(int id);
     }
 }

@@ -10,20 +10,18 @@ namespace ChessPhone.Api.Controllers
     [ApiController]
     public class PhonePadsController(IPhonePadService phonePadService) : ControllerBase
     {
-        private readonly IPhonePadService _phonePadService = phonePadService;
-
         // GET: api/<PhonePadsController>
         [HttpGet]
         public async Task<IEnumerable<PhonePad>> GetPhonePadAsync()
         {
-            return await _phonePadService.GetPhonePadsAsync();
+            return await phonePadService.GetPhonePadsAsync();
         }
 
         // GET api/<PhonePadsController>/5
         [HttpGet("{id}")]
-        public async Task<PhonePad> GetPhonePadAsync(int id)
+        public async Task<PhonePad?> GetPhonePadAsync(int id)
         {
-            return await _phonePadService.GetPhonePadAsync(id);
+            return await phonePadService.GetPhonePadAsync(id);
         }
     }
 }

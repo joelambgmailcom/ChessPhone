@@ -6,13 +6,13 @@
 
         string Name { get; set; }
 
-        IPhonePad PhonePad { get; }
+        IPhonePad? PhonePad { get; }
 
         bool IsCanOnlyMoveSingleSpace { get; set; }
 
         HashSet<Location> Vectors { get; set; }
 
-        void SetPhonePad(IPhonePad phonePad);
+        void SetPhonePad(IPhonePad? phonePad);
 
         bool IsLocationGeneralValid(int newColumn, int newRow);
 

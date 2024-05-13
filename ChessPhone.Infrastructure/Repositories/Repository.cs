@@ -5,7 +5,7 @@ namespace ChessPhone.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : IRepositoryEntity
     {
-        public async Task<T> GetAsync(int id)
+        public async Task<T?> GetAsync(int id)
         {
             var data = await FetchDataAsync();
             return data.FirstOrDefault(x => x.Id == id);

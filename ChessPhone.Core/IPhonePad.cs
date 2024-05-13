@@ -13,9 +13,7 @@
         int ColumnCount { get; }
 
         int RowCount { get; }
-
-        HashSet<PhoneButton> ValidMoveButtons { get; }
-
-        PhoneButton GetPhoneButton(int colunmIndex, int rowIndex);
+        
+        PhoneButton GetPhoneButton(int columnIndex, int rowIndex);
     }
 }

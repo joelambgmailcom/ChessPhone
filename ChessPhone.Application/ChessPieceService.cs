@@ -3,18 +3,16 @@ using ChessPhone.Infrastructure.Repositories;
 
 namespace ChessPhone.Application
 {
-    public class ChessPieceService(IRepository<ChessPiece> chessPieceRepositoy) : IChessPieceService
+    public class ChessPieceService(IRepository<ChessPiece> chessPieceRepository) : IChessPieceService
     {
-        private readonly IRepository<ChessPiece> _chessPieceRepositoy = chessPieceRepositoy;
-
         public async Task<List<ChessPiece>> GetChessPiecesAsync()
         {
-            return await _chessPieceRepositoy.GetAllAsync();
+            return await chessPieceRepository.GetAllAsync();
         }
 
-        public async Task<ChessPiece> GetChessPieceAsync(int Id)
+        public async Task<ChessPiece?> GetChessPieceAsync(int id)
         {
-            return await _chessPieceRepositoy.GetAsync(Id);
+            return await chessPieceRepository.GetAsync(id);
         }
     }
 }

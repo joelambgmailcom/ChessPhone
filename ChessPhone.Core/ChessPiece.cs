@@ -4,19 +4,19 @@
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        public IPhonePad PhonePad { get; private set; }
+        public IPhonePad? PhonePad { get; private set; }
 
         public bool IsCanOnlyMoveSingleSpace { get; set; }
 
         public HashSet<Location> Vectors { get; set; } = [];
 
-
-
-        public void SetPhonePad(IPhonePad phonePad)
+        public void SetPhonePad(IPhonePad? phonePad)
         {
             PhonePad = phonePad;
+            if (phonePad?.PhoneButtons == null) return;
+
             foreach (var buttonArray in phonePad.PhoneButtons)
             {
                 foreach (var button in buttonArray)
@@ -27,16 +27,15 @@
         }
 
 
-
         public bool IsLocationGeneralValid(int newColumn, int newRow)
         {
-            if (newColumn >= PhonePad.ColumnCount)
+            if (PhonePad != null && newColumn >= PhonePad.ColumnCount)
                 return false;
 
-            if (newRow >= PhonePad.RowCount)
+            if (PhonePad != null && newRow >= PhonePad.RowCount)
                 return false;
 
-            if (PhonePad.GetPhoneButton(newColumn, newRow).IsAlwaysInvalid)
+            if (PhonePad != null && PhonePad.GetPhoneButton(newColumn, newRow).IsAlwaysInvalid)
                 return false;
 
             return true;
@@ -47,10 +46,7 @@
             if (!IsLocationGeneralValid(newColumn, newRow))
                 return false;
 
-            if (PhonePad.GetPhoneButton(newColumn, newRow).InvalidOnIteration.Contains(iteration))
-                return false;
-
-            return true;
+            return PhonePad == null || !PhonePad.GetPhoneButton(newColumn, newRow).InvalidOnIteration.Contains(iteration);
         }
 
         public bool IsLocationValidNow(int newColumn, int newRow, int currentColumn, int currentRow, int iteration)
@@ -58,25 +54,22 @@
             if (!IsLocationValidNow(newColumn, newRow, iteration))
                 return false;
 
-            if (!PhonePad.IsSkipMoveValid &&  newColumn == currentColumn && newRow == currentRow)
-                return false;
-
-            return true;
+            return PhonePad is not {IsSkipMoveValid: false} || newColumn != currentColumn || newRow != currentRow;
         }
 
         private bool HasVectorMovedOffPad(int columnIndex, int rowIndex, int iterations)
         {
-            return columnIndex < 0
-                || columnIndex >= PhonePad.ColumnCount
-                || rowIndex < 0
-                || rowIndex >= PhonePad.RowCount
-                || IsCanOnlyMoveSingleSpace && iterations > 1;
+            return PhonePad != null && (columnIndex < 0
+                                        || columnIndex >= PhonePad.ColumnCount
+                                        || rowIndex < 0
+                                        || rowIndex >= PhonePad.RowCount
+                                        || IsCanOnlyMoveSingleSpace && iterations > 1);
         }
 
         private HashSet<PhoneButton> GetValidMoves(int column, int row)
         {
             var validButtons = new HashSet<PhoneButton>();
-            if (PhonePad.GetPhoneButton(column, row).IsAlwaysInvalid)
+            if (PhonePad!.GetPhoneButton(column, row).IsAlwaysInvalid)
                 return validButtons;
 
             foreach (var vector in Vectors)
