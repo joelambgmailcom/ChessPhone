@@ -1,82 +1,86 @@
 ﻿using ChessPhone.Domain;
 using ChessPhone.Infrastructure.Repositories;
-using System.Text;
+using System.Diagnostics;
 
 namespace ChessPhone.Application
 {
     public class PhoneNumberService(IRepository<ChessPiece> chessPieceRepository, IRepository<PhonePad> phonePadRepository) : IPhoneNumberService
     {
-        public async Task<int> GetPhoneNumbersCountAsync(int chessPieceId, int phonePadId, int lengthOfPhoneNumber)
+        public async Task<PhoneNumberResult> GetPhoneNumbersCountAsync(int chessPieceId, int phonePadId, int lengthOfPhoneNumber)
         {
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(lengthOfPhoneNumber, 13);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(lengthOfPhoneNumber, 12);
 
+            var timer = new Stopwatch();
+            timer.Start();
             var result = await GetPhoneNumbersButtonListAsync(chessPieceId, phonePadId, lengthOfPhoneNumber);
-            return result.Count;
+            timer.Stop();
+
+            return new PhoneNumberResult
+            {
+                PhoneNumberCount = result,
+                GenerationTimeInMilliseconds = timer.ElapsedMilliseconds
+            };
         }
 
-        public async Task<List<string>> GetPhoneNumbersAsync(int chessPieceId, int phonePadId, int lengthOfPhoneNumber)
+        private async Task<long> GetPhoneNumbersButtonListAsync(int chessPieceId, int phonePadId,
+            int lengthOfPhoneNumber)
         {
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(lengthOfPhoneNumber, 7);
+            var chessPiece = await chessPieceRepository.GetAsync(chessPieceId)
+                             ?? throw new ArgumentOutOfRangeException(nameof(chessPieceId),
+                                 $"chessPieceId {chessPieceId} not found");
+            var phonePad = await phonePadRepository.GetAsync(phonePadId)
+                           ?? throw new ArgumentOutOfRangeException(nameof(phonePadId),
+                               $"phonePadId {phonePadId} not found");
+            chessPiece.SetPhonePad(phonePad);
 
-            var result = await GetPhoneNumbersButtonListAsync(chessPieceId, phonePadId, lengthOfPhoneNumber);
-            return ConvertPhoneNumberButtonsToStrings(result);
-        }
 
-        private async Task<List<List<PhoneButton>>> GetPhoneNumbersButtonListAsync(int chessPieceId, int phonePadId, int lengthOfPhoneNumber)
-        {
-            var phoneNumbers = new List<List<PhoneButton>>();
-            var newPhoneNumbers = new List<List<PhoneButton>>();
-            var chessPiece = await chessPieceRepository.GetAsync(chessPieceId);
-            var phonePad = await phonePadRepository.GetAsync(phonePadId);
-            chessPiece?.SetPhonePad(phonePad);
-
-            if (chessPiece?.PhonePad != null)
-                for (var row = 0; row < chessPiece.PhonePad.RowCount; row++)
+            var phonePadButtonList = new List<PhoneButton>();
+            for (var row = 0; row < phonePad.RowCount; row++)
+            {
+                for (var column = 0; column < phonePad.ColumnCount; column++)
                 {
-                    for (var column = 0; column < chessPiece.PhonePad.ColumnCount; column++)
-                    {
-                        var button = chessPiece.PhonePad.GetPhoneButton(column, row);
-                        if (chessPiece.IsLocationValidNow(button.Column, button.Row, 0))
-                            phoneNumbers.Add([button]);
-                    }
+                    var button = phonePad.GetPhoneButton(column, row);
+                    button.TotalMoves = 0;
+                    button.TotalMovesLastIteration = 0;
+                    if (button.IsAlwaysInvalid)
+                        continue;
+
+                    phonePadButtonList.Add(button);
+                    if (chessPiece.IsLocationValidNow(button.Column, button.Row, 0))
+                        button.TotalMoves = 1;
                 }
+            }
+
+            MoveTotalMovesToTotalMovesLastIteration(phonePadButtonList);
 
             for (var iterations = 1; iterations < lengthOfPhoneNumber; iterations++)
             {
-                foreach (var buttonList in phoneNumbers)
+                foreach (var currentButton in phonePadButtonList)
                 {
-                    var lastButton = buttonList.Last();
-                    foreach (var newButton in lastButton.ValidNextMoves)
+                    foreach (var targetButton in currentButton.ValidNextMoves)
                     {
-                        if (chessPiece != null && !chessPiece.IsLocationValidNow(newButton.Column, newButton.Row, lastButton.Column, lastButton.Row, iterations))
+                        if (!chessPiece.IsLocationValidNow(targetButton.Column, targetButton.Row, iterations))
                             continue;
 
-                        var cloneList = buttonList.ToList();
-                        cloneList.Add(newButton);
-                        newPhoneNumbers.Add(cloneList);
+                        targetButton.TotalMoves += currentButton.TotalMovesLastIteration;
                     }
                 }
-                phoneNumbers = newPhoneNumbers;
-                newPhoneNumbers = [];
+
+                MoveTotalMovesToTotalMovesLastIteration(phonePadButtonList);
             }
 
-            return phoneNumbers;
+            var answer = phonePadButtonList.Select(button => button.TotalMovesLastIteration).Sum();
+            return answer;
         }
 
-        private static List<string> ConvertPhoneNumberButtonsToStrings(List<List<PhoneButton>> result)
+
+        private static void MoveTotalMovesToTotalMovesLastIteration(List<PhoneButton> phonePadButtonList)
         {
-            var results = new List<string>();
-            foreach (List<PhoneButton> list in result)
+            foreach (var currentButton in phonePadButtonList)
             {
-                var builder = new StringBuilder();
-                foreach (PhoneButton phoneButton in list)
-                    builder.Append(phoneButton.Label);
-
-                results.Add(builder.ToString());
+                currentButton.TotalMovesLastIteration = currentButton.TotalMoves;
+                currentButton.TotalMoves = 0;
             }
-
-            results.Sort();
-            return results;
         }
     }
 }

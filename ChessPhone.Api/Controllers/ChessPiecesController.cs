@@ -10,9 +10,6 @@ namespace ChessPhone.Api.Controllers
     [ApiController]
     public class ChessPiecesController(IChessPieceService chessPieceService) : ControllerBase
     {
-        public int NumberOfTurnsMaximum { get; set; }
-
-        public int NumberOfTurnsWithListMaximum { get; set; }
         // GET: api/<ChessPiecesController>
         [HttpGet]
         public async Task<IEnumerable<ChessPiece>> Get()
