@@ -13,5 +13,9 @@
         public int[] InvalidOnIteration { get; set; } = [];
 
         public HashSet<PhoneButton> ValidNextMoves { get; set; } = [];
+
+        public int TotalMoves { get; set; }
+
+        public int TotalMovesLastIteration { get; set; }
     }
 }

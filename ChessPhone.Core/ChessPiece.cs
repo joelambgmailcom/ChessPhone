@@ -26,13 +26,15 @@
             }
         }
 
-
-        public bool IsLocationGeneralValid(int newColumn, int newRow)
+        public bool IsLocationGeneralValid(int newColumn, int newRow, int currentColumn, int currentRow)
         {
             if (PhonePad != null && newColumn >= PhonePad.ColumnCount)
                 return false;
 
             if (PhonePad != null && newRow >= PhonePad.RowCount)
+                return false;
+
+            if (PhonePad is { IsSkipMoveValid: false } && newColumn == currentColumn && newRow == currentRow)
                 return false;
 
             if (PhonePad != null && PhonePad.GetPhoneButton(newColumn, newRow).IsAlwaysInvalid)
@@ -43,18 +45,7 @@
 
         public bool IsLocationValidNow(int newColumn, int newRow, int iteration)
         {
-            if (!IsLocationGeneralValid(newColumn, newRow))
-                return false;
-
             return PhonePad == null || !PhonePad.GetPhoneButton(newColumn, newRow).InvalidOnIteration.Contains(iteration);
-        }
-
-        public bool IsLocationValidNow(int newColumn, int newRow, int currentColumn, int currentRow, int iteration)
-        {
-            if (!IsLocationValidNow(newColumn, newRow, iteration))
-                return false;
-
-            return PhonePad is not {IsSkipMoveValid: false} || newColumn != currentColumn || newRow != currentRow;
         }
 
         private bool HasVectorMovedOffPad(int columnIndex, int rowIndex, int iterations)
@@ -80,7 +71,7 @@
                 while (!HasVectorMovedOffPad(currentColumnOffset, currentRowOffset, iterations))
                 {
                     var button = PhonePad.GetPhoneButton(currentColumnOffset, currentRowOffset);
-                    if (IsLocationGeneralValid(currentColumnOffset, currentRowOffset))
+                    if (IsLocationGeneralValid(currentColumnOffset, currentRowOffset, column, row))
                         validButtons.Add(button);
 
                     currentColumnOffset += vector.Column;

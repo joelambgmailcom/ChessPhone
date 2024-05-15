@@ -14,10 +14,6 @@
 
         void SetPhonePad(IPhonePad? phonePad);
 
-        bool IsLocationGeneralValid(int newColumn, int newRow);
-
         bool IsLocationValidNow(int newColumn, int newRow, int iteration);
-
-        bool IsLocationValidNow(int newColumn, int newRow, int currentColumn, int currentRow, int iteration);
     }
 }
